@@ -2,7 +2,7 @@
 "use client"
 
 import { useEffect, useMemo, useState } from "react"
-import Link from "next/link" 
+import Link from "next/link"
 import { usePathname } from "next/navigation"
 
 type Tab = { label: string; href: string }
@@ -24,9 +24,7 @@ export default function Header() {
   useEffect(() => {
     if (pathname !== "/") return
     const ids = ["home", "explore", "about"]
-    const els = ids
-      .map((id) => document.getElementById(id))
-      .filter((n): n is HTMLElement => !!n)
+    const els = ids.map((id) => document.getElementById(id)).filter((n): n is HTMLElement => !!n)
 
     const io = new IntersectionObserver(
       (entries) => {
@@ -34,11 +32,7 @@ export default function Header() {
           .filter((e) => e.isIntersecting)
           .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0]
         if (!visible) return
-        const map: Record<string, string> = {
-          home: "Home",
-          explore: "Explore",
-          about: "About",
-        }
+        const map: Record<string, string> = { home: "Home", explore: "Explore", about: "About" }
         setActive(map[visible.target.id])
       },
       { rootMargin: "-30% 0px -50% 0px", threshold: [0.1, 0.25, 0.5, 0.75] }
@@ -54,11 +48,12 @@ export default function Header() {
     else if (pathname === "/cases") setActive("Cases")
   }, [pathname])
 
-  // Smooth-scroll for hash links, keep URL hash
+  // Smooth-scroll handler for hash links (home only)
   const onNavClick = (href: string) => (e: React.MouseEvent) => {
     if (!href.startsWith("/#")) return
-    e.preventDefault()
     const id = href.split("#")[1]
+    if (pathname !== "/") return // let Next navigate to "/#id"
+    e.preventDefault()
     const el = document.getElementById(id)
     if (el) {
       window.history.pushState(null, "", href)
@@ -66,6 +61,15 @@ export default function Header() {
       setOpen(false)
     }
   }
+
+  // Smooth-scroll when landing on "/#id"
+  useEffect(() => {
+    if (pathname !== "/") return
+    if (!window.location.hash) return
+    const id = window.location.hash.slice(1)
+    const el = document.getElementById(id)
+    if (el) setTimeout(() => el.scrollIntoView({ behavior: "smooth", block: "start" }), 0)
+  }, [pathname])
 
   const tabClass = (on: boolean) =>
     "inline-flex items-center rounded-2xl px-3.5 py-2 text-sm font-medium transition-colors " +
