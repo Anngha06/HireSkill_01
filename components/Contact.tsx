@@ -190,10 +190,18 @@ function CandidateForm() {
 
       <ValidationError prefix="Email" field="email" errors={state.errors} />
 
-      <label className="flex items-start gap-3 text-sm text-[#3d3d55]">
-        <input name="consent" type="checkbox" className="mt-1 accent-[#0b0b14]" required />
-        <span>I agree to be contacted about relevant roles and events.</span>
-      </label>
+      <div className="flex items-start gap-3 text-sm text-[#3d3d55] pointer-events-auto">
+  <input
+    id="consent"
+    name="consent"
+    type="checkbox"
+    required
+    className="mt-1 h-5 w-5 accent-[#0b0b14] cursor-pointer"
+  />
+  <label htmlFor="consent" className="cursor-pointer select-none">
+    I agree to be contacted about relevant roles and events.
+  </label>
+</div>
 
       <button
         type="submit"
@@ -396,3 +404,4 @@ function ArrowRight() {
     </svg>
   )
 }
+
