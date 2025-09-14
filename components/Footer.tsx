@@ -21,7 +21,7 @@ export default function GlassFooter() {
               <div className="flex items-center gap-3">
                 <span className="h-8 w-8 rounded-xl bg-[#2450a6]"></span>
                 <span className="text-sm font-extrabold tracking-widest text-[#0b2a5c]">
-                  HIRESKILL.AI
+                  BOOTCODING PVT LTD
                 </span>
               </div>
               <p className="mt-4 text-sm text-[#0b2a5c]">
