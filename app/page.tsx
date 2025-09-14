@@ -22,7 +22,14 @@ export default function Page() {
           <Hero />
           <div className="py-6">
             <div className="mx-auto max-w-6xl px-4">
-              <p className="opacity-70">HIRESKILL AI .HIRESKILL AI. HIRESKILL AI.</p>
+              <marquee className="opacity-70" behavior="scroll" direction="left" scrollamount={7}>
+  Hire in hours, not weeks · Skills over résumés · Fair. Fast. Skill-first hiring · AI that closes roles, not tabs ·
+  Every shortlist, on merit · Speed to talent, at scale · One platform. Zero bias · Interviews that score themselves ·
+  Stop screening. Start hiring · Talent, verified and ready · Proctoring you can trust · Automation that moves offers ·
+  From apply to offer, on autopilot · Quality hires, predictable speed · Data in. Bias out · The shortest path to the
+  right hire · Real skills. Real-time decisions · Your funnel, finally disciplined · Engage candidates. Eliminate drop-off
+</marquee>
+
             </div>
           </div>
         </section>
