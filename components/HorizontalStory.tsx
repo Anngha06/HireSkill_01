@@ -7,13 +7,64 @@ import { ScrollTrigger } from "gsap/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger)
 
 type Slide = { title: string; sub: string; img: string }
-const SLIDES: Slide[] = [
-  { title: "Web designers build globally", sub: "Ship quality sites across regions and niches.", img: "/work/1.jpg" },
-  { title: "But languages differ",       sub: "Customers don’t all browse in the same language.", img: "/work/2.jpg" },
-  { title: "Content must adapt",         sub: "Localize UX, legal, and SEO-friendly copy.",      img: "/work/3.jpg" },
-  { title: "Automate translation",       sub: "Sync content updates without manual overhead.",    img: "/work/4.jpg" },
-  { title: "Scale worldwide",            sub: "Measure, iterate, and grow new markets.",         img: "/work/5.jpg" },
-]
+const USE_CASES: UseCase[] = [
+  {
+    key: 'corporate',
+    title: 'Corporate Hiring',
+    summary:
+      'Win the talent race. Every time. Eliminate delays, resume inflation, and bias with AI-driven shortlisting, screening, and interviews.',
+    bullets: [
+      'Boost recruiter efficiency — AI surfaces only the top candidates, saving hours of manual work.',
+      'Faster hiring, less drop-off — Instant scheduling and structured feedback keep talent engaged.',
+      'Fair, skill-first evaluations — Every candidate is judged on skills—not resumes.',
+    ],
+  },
+  {
+    key: 'high-volume',
+    title: 'High-Volume Hiring',
+    summary:
+      'Hire at scale. Without losing quality. Process thousands of applicants seamlessly with AI automation and proctoring.',
+    bullets: [
+      'AI handles the load — AI shortlisting, screening, interview and scoring in one place.',
+      'Keep candidates engaged — Real-time evaluation reduces ghosting and delays.',
+      'Consistent, bias-free results — Standardised skill-based evaluations every time.',
+    ],
+  },
+  {
+    key: 'ops',
+    title: 'Recruiting Operations',
+    summary:
+      'AI does the grind. You check the end result. Free recruiters from manual tasks so they can focus on outcomes.',
+    bullets: [
+      'Supercharge efficiency — AI shortlisting, screening, interview and scoring in one place.',
+      'Only interview-ready candidates — Filter out proxies and inflated resumes, with interviews upfront.',
+      'Insights from every stage — Analytics turn interactions into actionable hiring intelligence.',
+    ],
+  },
+  {
+    key: 'ta-leaders',
+    title: 'Talent Acquisition Leaders',
+    summary:
+      'Lead with data. Build with skills. Get full visibility, speed, and fairness across your hiring funnel.',
+    bullets: [
+      'Real-time analytics — Dashboards track drop-offs, funnel health, and ROI.',
+      'Skill-first strategy — Bias-free, data-backed decisions build long-term trust.',
+      'Brand advantage — Deliver fair and transparent hiring that strengthens reputation.',
+    ],
+  },
+  {
+    key: 'candidates',
+    title: 'Candidates',
+    summary:
+      'A fair shot for every candidate. Always. No bias. No shortcuts. Just skills, evaluated with integrity.',
+    bullets: [
+      'Transparent process — Clear scoring and real-time feedback at every stage.',
+      'Fair evaluations — AI ensures equal opportunity for all candidates.',
+      'Confidence in integrity — Proctoring keeps the process secure and trustworthy.',
+    ],
+  },
+];
+
 
 export default function HorizontalStory() {
   const wrap = useRef<HTMLDivElement>(null)
