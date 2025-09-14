@@ -5,14 +5,14 @@ import { useEffect, useState } from "react"
 import Link from "next/link"
 import { usePathname } from "next/navigation"
 
-type Tab = { label: string; href: string }
+type Tab = { label: string; href: string; external?: boolean }
 
 const TABS: Tab[] = [
   { label: "Home",    href: "/#home" },
-  { label: "Explore", href: "/hireskill-dev" },     // page route
-  { label: "About",   href: "/#founder" },          // Founder's Message
-  { label: "Contact", href: "/#contact" },          // Contact + FAQs
-  { label: "Cases",   href: "/#cases" },            // HorizontalStory
+  { label: "Explore", href: "https://bootcoding.hireskilldev.com/", external: true },
+  { label: "About",   href: "/#founder" },      // Founder's Message section
+  { label: "Contact", href: "/#contact" },      // Contact + FAQs section
+  { label: "Cases",   href: "/#cases" },        // HorizontalStory section
 ]
 
 export default function Header() {
@@ -44,19 +44,13 @@ export default function Header() {
     return () => io.disconnect()
   }, [pathname])
 
-  // Set active for routed pages
-  useEffect(() => {
-    if (pathname === "/hireskill-dev") setActive("Explore")
-    else if (pathname === "/contact") setActive("Contact")
-    else if (pathname === "/cases") setActive("Cases")
-  }, [pathname])
-
   // Smooth-scroll handler for hash links (home only)
-  const onNavClick = (href: string) => (e: React.MouseEvent) => {
+  const onNavClick = (href: string, external?: boolean) => (e: React.MouseEvent) => {
+    if (external) return // allow normal nav to external site
     if (!href.startsWith("/#")) return
-    const id = href.split("#")[1]
-    if (pathname !== "/") return
+    if (pathname !== "/") return // let Next route to "/#id"
     e.preventDefault()
+    const id = href.split("#")[1]
     const el = document.getElementById(id)
     if (el) {
       window.history.pushState(null, "", href)
@@ -65,7 +59,7 @@ export default function Header() {
     }
   }
 
-  // Smooth-scroll on hash load
+  // Smooth-scroll on hash load (home)
   useEffect(() => {
     if (pathname !== "/") return
     const id = window.location.hash.slice(1)
@@ -76,32 +70,49 @@ export default function Header() {
 
   const tabClass = (on: boolean) =>
     "inline-flex items-center rounded-2xl px-3.5 py-2 text-sm font-medium transition-colors " +
-    (on ? "bg-[#2563ff]/12 text-[#2563ff] ring-1 ring-[#2563ff]/25" : "text-[#111] hover:bg-black/5")
+    (on
+      ? "bg-[#2563ff]/12 text-[#2563ff] ring-1 ring-[#2563ff]/25"
+      : "text-[#111] hover:bg-black/5")
 
   return (
     <header className="sticky top-3 z-50 px-3">
       <div className="mx-auto max-w-6xl">
         <div className="rounded-full bg-white/70 backdrop-blur supports-[backdrop-filter]:bg-white/55 ring-1 ring-black/10 shadow-[0_8px_30px_rgba(0,0,0,0.06)]">
           <div className="h-14 md:h-16 flex items-center gap-3 px-3 md:px-4">
+            {/* Wordmark */}
             <Link href="/" className="shrink-0 flex items-center gap-2 select-none" onClick={() => setOpen(false)}>
               <span className="text-[26px] md:text-[30px] leading-none font-medium text-[#2563ff]">HireSkill</span>
               <span className="ml-1 grid h-6 w-6 place-items-center rounded-lg bg-[#2563ff] text-white text-[11px] font-bold">AI</span>
             </Link>
 
+            {/* Desktop nav */}
             <nav className="mx-auto hidden md:flex items-center gap-2">
-              {TABS.map((t) => (
-                <Link
-                  key={t.label}
-                  href={t.href}
-                  onClick={onNavClick(t.href)}
-                  className={tabClass(active === t.label)}
-                  aria-current={active === t.label ? "page" : undefined}
-                >
-                  {t.label}
-                </Link>
-              ))}
+              {TABS.map((t) =>
+                t.external ? (
+                  <a
+                    key={t.label}
+                    href={t.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className={tabClass(active === t.label)}
+                  >
+                    {t.label}
+                  </a>
+                ) : (
+                  <Link
+                    key={t.label}
+                    href={t.href}
+                    onClick={onNavClick(t.href, t.external)}
+                    className={tabClass(active === t.label)}
+                    aria-current={active === t.label ? "page" : undefined}
+                  >
+                    {t.label}
+                  </Link>
+                )
+              )}
             </nav>
 
+            {/* Mobile toggle */}
             <button
               type="button"
               aria-label="Toggle menu"
@@ -114,20 +125,33 @@ export default function Header() {
             </button>
           </div>
 
+          {/* Mobile drawer */}
           {open && (
             <div className="md:hidden px-3 pb-3">
               <div className="grid gap-2">
-                {TABS.map((t) => (
-                  <Link
-                    key={t.label}
-                    href={t.href}
-                    onClick={(e) => { onNavClick(t.href)(e); setOpen(false) }}
-                    className={"rounded-xl px-3 py-2 text-sm font-medium " + (active === t.label ? "bg-[#2563ff]/12 text-[#2563ff]" : "text-[#111] hover:bg-black/5")}
-                    aria-current={active === t.label ? "page" : undefined}
-                  >
-                    {t.label}
-                  </Link>
-                ))}
+                {TABS.map((t) =>
+                  t.external ? (
+                    <a
+                      key={t.label}
+                      href={t.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className={"rounded-xl px-3 py-2 text-sm font-medium " + (active === t.label ? "bg-[#2563ff]/12 text-[#2563ff]" : "text-[#111] hover:bg-black/5")}
+                    >
+                      {t.label}
+                    </a>
+                  ) : (
+                    <Link
+                      key={t.label}
+                      href={t.href}
+                      onClick={(e) => { onNavClick(t.href, t.external)(e); setOpen(false) }}
+                      className={"rounded-xl px-3 py-2 text-sm font-medium " + (active === t.label ? "bg-[#2563ff]/12 text-[#2563ff]" : "text-[#111] hover:bg-black/5")}
+                      aria-current={active === t.label ? "page" : undefined}
+                    >
+                      {t.label}
+                    </Link>
+                  )
+                )}
               </div>
             </div>
           )}
