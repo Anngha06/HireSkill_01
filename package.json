@@ -1,0 +1,39 @@
+ {
+  "name": "hireskill-site",
+  "private": true,
+  "version": "1.0.0",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier -w .",
+    "build:gh": "cross-env GHPAGES=1 next build && next export",
+    "deploy:gh": "npm run build:gh && gh-pages -d out -b gh-pages"
+  },
+  "dependencies": {
+    "@formspree/react": "3.0.0",
+    "@react-three/fiber": "8.15.16",
+    "@react-three/drei": "9.121.0",
+    "@studio-freight/lenis": "1.0.29",
+    "three": "0.160.0",
+    "framer-motion": "11.0.0",
+    "gsap": "3.12.5",
+    "next": "14.2.10",
+    "react": "18.3.1",
+    "react-dom": "18.3.1"
+  },
+  "devDependencies": {
+    "@types/node": "20.11.30",
+    "@types/react": "18.2.42",
+    "@types/three": "0.160.0",
+    "autoprefixer": "10.4.20",
+    "eslint": "8.57.0",
+    "gh-pages": "6.1.1",
+    "postcss": "8.4.47",
+    "prettier": "3.3.3",
+    "tailwindcss": "3.4.10",
+    "typescript": "5.6.2",
+    "cross-env": "7.0.3"
+  }
+}
