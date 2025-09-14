@@ -13,7 +13,7 @@ const PHASES: Phase[] = [
     content: (
       <div className="space-y-3">
         <p className="text-white/75">
-          At HireSkill.ai, our vision is to turn hiring from a slow, cost-heavy process into a strategic,
+          At HireSkill Ai, our vision is to turn hiring from a slow, cost-heavy process into a strategic,
           revenue-enabling function that accelerates business growth and empowers organisations to thrive.
         </p>
         <p className="text-white/75">
@@ -34,7 +34,7 @@ const PHASES: Phase[] = [
         <ul className="list-disc pl-5 space-y-1 text-white/80">
         </ul>
         <p className="text-white/75">
-          With HireSkill.ai, businesses stop wasting time on outdated processes and start making faster, fairer,
+          With HireSkill Ai, businesses stop wasting time on outdated processes and start making faster, fairer,
           smarter decisions.
         </p>
       </div>
@@ -159,7 +159,7 @@ export default function WuxingStack() {
         <div>
           <h2 className="text-5xl md:text-6xl font-extrabold tracking-tight text-blue">Hire Faster. Hire Smarter. Build Stronger Teams</h2>
           <p className="mt-6 text-lg leading-8 text-black/80">
-            HireSkill.ai gives recruiters back their time, ensures authenticity, and delivers data-driven hiring — so companies can focus on building great teams, not battling broken processes
+            HireSkill Ai gives recruiters back their time, ensures authenticity, and delivers data-driven hiring — so companies can focus on building great teams, not battling broken processes
           </p>
         </div>
 
