@@ -69,7 +69,12 @@ const USE_CASES: UseCase[] = [
     ],
   },
 ];
-
+// map to your slide shape and attach static images
+const SLIDES: Slide[] = USE_CASES.map((u, i) => ({
+  title: u.title,
+  sub: u.summary,
+  img: `/work/${i + 1}.jpg`,
+}))
 
 export default function HorizontalStory() {
   const wrap = useRef<HTMLDivElement>(null)
