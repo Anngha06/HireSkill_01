@@ -44,19 +44,6 @@ export default function Page() {
       </div>
     </div>
   </div>
-
-  <style jsx>{`
-    .marquee {
-      display: flex;
-      width: max-content;
-      will-change: transform;
-      animation: marquee-left 28s linear infinite;
-    }
-    @keyframes marquee-left {
-      0% { transform: translateX(0); }
-      100% { transform: translateX(-50%); } /* shift by one copy */
-    }
-  `}</style>
 </div>
 
             </div>
