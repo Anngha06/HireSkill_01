@@ -22,13 +22,42 @@ export default function Page() {
           <Hero />
           <div className="py-6">
             <div className="mx-auto max-w-6xl px-4">
-              <marquee className="opacity-70" behavior="scroll" direction="left" scrollamount={7}>
-  Hire in hours, not weeks · Skills over résumés · Fair. Fast. Skill-first hiring · AI that closes roles, not tabs ·
-  Every shortlist, on merit · Speed to talent, at scale · One platform. Zero bias · Interviews that score themselves ·
-  Stop screening. Start hiring · Talent, verified and ready · Proctoring you can trust · Automation that moves offers ·
-  From apply to offer, on autopilot · Quality hires, predictable speed · Data in. Bias out · The shortest path to the
-  right hire · Real skills. Real-time decisions · Your funnel, finally disciplined · Engage candidates. Eliminate drop-off
-</marquee>
+              <div className="py-6">
+  <div className="mx-auto max-w-6xl px-4">
+    <div className="relative overflow-hidden">
+      <div className="marquee opacity-70 whitespace-nowrap">
+        <span className="pr-8">
+          Hire in hours, not weeks · Skills over résumés · Fair. Fast. Skill-first hiring · AI that closes roles, not tabs ·
+          Every shortlist, on merit · Speed to talent, at scale · One platform. Zero bias · Interviews that score themselves ·
+          Stop screening. Start hiring · Talent, verified and ready · Proctoring you can trust · Automation that moves offers ·
+          From apply to offer, on autopilot · Quality hires, predictable speed · Data in. Bias out · The shortest path to the
+          right hire · Real skills. Real-time decisions · Your funnel, finally disciplined · Engage candidates. Eliminate drop-off
+        </span>
+        {/* duplicate for seamless loop */}
+        <span className="pr-8" aria-hidden="true">
+          Hire in hours, not weeks · Skills over résumés · Fair. Fast. Skill-first hiring · AI that closes roles, not tabs ·
+          Every shortlist, on merit · Speed to talent, at scale · One platform. Zero bias · Interviews that score themselves ·
+          Stop screening. Start hiring · Talent, verified and ready · Proctoring you can trust · Automation that moves offers ·
+          From apply to offer, on autopilot · Quality hires, predictable speed · Data in. Bias out · The shortest path to the
+          right hire · Real skills. Real-time decisions · Your funnel, finally disciplined · Engage candidates. Eliminate drop-off
+        </span>
+      </div>
+    </div>
+  </div>
+
+  <style jsx>{`
+    .marquee {
+      display: flex;
+      width: max-content;
+      will-change: transform;
+      animation: marquee-left 28s linear infinite;
+    }
+    @keyframes marquee-left {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); } /* shift by one copy */
+    }
+  `}</style>
+</div>
 
             </div>
           </div>
