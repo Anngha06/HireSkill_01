@@ -47,6 +47,18 @@ a { @apply underline-offset-4 hover:underline; }
 }
 .dark .ripple{
   background: radial-gradient(circle, rgba(99,161,255,.9), rgba(99,161,255,0) 60%);
+
+  /* marquee */
+.marquee {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  animation: marquee-left 28s linear infinite;
+}
+@keyframes marquee-left {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); } /* shift by one duplicate */
+}
 }
 
 @keyframes ripple {
