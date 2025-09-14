@@ -10,18 +10,30 @@ import LenisProvider from "../components/LenisProvider"
 export const metadata: Metadata = {
   title: "Site",
   description: "Portfolio",
-  themeColor: "#0b0b14"
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#ffffff" },
+    { media: "(prefers-color-scheme: dark)", color: "#0b0b14" },
+  ],
+  icons: {
+    icon: "/favicon.ico",                // put a file in /public/favicon.ico
+    shortcut: "/favicon.ico",
+    apple: "/apple-touch-icon.png",      // optional: add to /public
+  },
 }
 
 export const viewport: Viewport = {
   width: "device-width",
-  initialScale: 1
+  initialScale: 1,
 }
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
-    <html lang="en">
-      <body className="relative min-h-dvh">
+    <html lang="en" className="scroll-smooth">
+      <head>
+        {/* Prevent 404 on background preload; safe even if file missing */}
+        <link rel="preload" as="video" href="/bgg.mp4" />
+      </head>
+      <body className="relative min-h-dvh antialiased" suppressHydrationWarning>
         <LenisProvider>
           {/* background video */}
           <BackgroundVideo src="/bgg.mp4" />
@@ -49,3 +61,4 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     </html>
   )
 }
+
