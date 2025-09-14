@@ -5,8 +5,13 @@ import { useEffect, useRef, useState } from "react"
 import gsap from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 gsap.registerPlugin(ScrollTrigger)
-
-type Slide = { title: string; sub: string; img: string }
+type UseCase = {
+  key: string
+  title: string
+  summary: string
+  bullets: string[]
+}
+type Slide = { title: string; sub: string; img: string } 
 const USE_CASES: UseCase[] = [
   {
     key: 'corporate',
