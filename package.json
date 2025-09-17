@@ -10,6 +10,7 @@
     "format": "prettier -w .",
     "build:gh": "cross-env GHPAGES=1 next build && next export",
     "deploy:gh": "npm run build:gh && gh-pages -d out -b gh-pages"
+    "gsap"
   },
   "dependencies": {
     "@formspree/react": "3.0.0",
